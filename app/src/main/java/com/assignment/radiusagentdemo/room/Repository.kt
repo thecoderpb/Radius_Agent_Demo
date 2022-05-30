@@ -1,6 +1,6 @@
 package com.assignment.radiusagentdemo.room
 
-class FacilityRepository (private val db: FacilityDatabase) {
+class Repository (private val db: FacilityDatabase) {
 
     suspend fun insert(item: FacilityItems) = db.getFacilityDao().insert(item)
     suspend fun delete(item: FacilityItems) = db.getFacilityDao().deleteItem(item)
@@ -8,6 +8,10 @@ class FacilityRepository (private val db: FacilityDatabase) {
 
     fun allFacilityItems() = db.getFacilityDao().getAllFacilityItems()
     fun allFacilityItemsCount() = db.getFacilityDao().getAllFacilityItemsCount()
+    fun getItemsCount() = db.getFacilityDao().getItemsCount()
+    fun getOptionsCountFromFacility(facilityName: String) = db.getFacilityDao().getOptionsCountFromFacility(facilityName)
+    fun getFacilityNameFromId(facilityId: String) = db.getFacilityDao().getFacilityNameFromId(facilityId)
+    fun getFacilitiesFromId(facilityId: String) = db.getFacilityDao().getFacilitiesFromId(facilityId)
     fun updateFacilityEntries(facilityName:String,
                               optionsName:String,
                               optionsIcon:String,

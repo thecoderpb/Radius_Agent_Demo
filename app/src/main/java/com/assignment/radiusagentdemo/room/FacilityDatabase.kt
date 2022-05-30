@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [FacilityItems::class,ExclusionItems::class], version = 1)
+@Database(entities = [FacilityItems::class,ExclusionItems::class], version = 2)
 abstract class FacilityDatabase : RoomDatabase() {
 
     abstract fun getFacilityDao(): FacilityDAO
@@ -23,6 +23,8 @@ abstract class FacilityDatabase : RoomDatabase() {
         }
 
         private fun createDatabase(context: Context) =
-            Room.databaseBuilder(context.applicationContext, FacilityDatabase::class.java, "FacilityDatabase.db").build()
+            Room.databaseBuilder(context.applicationContext, FacilityDatabase::class.java, "FacilityDatabase.db")
+                .fallbackToDestructiveMigration()
+                .build()
     }
 }

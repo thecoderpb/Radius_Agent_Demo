@@ -3,11 +3,10 @@ package com.assignment.radiusagentdemo.ui
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.assignment.radiusagentdemo.room.ExclusionItems
-import com.assignment.radiusagentdemo.room.FacilityItems
-import com.assignment.radiusagentdemo.room.FacilityRepository
+import com.assignment.radiusagentdemo.room.Repository
 import kotlinx.coroutines.launch
 
-class ExclusionsViewModel(private val repository: FacilityRepository): ViewModel() {
+class ExclusionsViewModel(private val repository: Repository): ViewModel() {
     fun insert(item: ExclusionItems) = viewModelScope.launch {
         repository.insert(item)
     }
@@ -19,4 +18,7 @@ class ExclusionsViewModel(private val repository: FacilityRepository): ViewModel
     fun nukeTable() = viewModelScope.launch {
         repository.nukeExclusionTable()
     }
+
+    fun allExclusionItemsCount() = repository.allExclusionItemsCount()
+    fun allExclusionItems() = repository.allExclusionItems()
 }
